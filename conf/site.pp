@@ -1,3 +1,5 @@
+include lamp
+
 file { '/tmp/test':
   ensure  => 'file',
   content => "I am a test file",

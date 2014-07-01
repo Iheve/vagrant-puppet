@@ -16,16 +16,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "master", primary: true do |master|
     master.vm.network "private_network", ip: "192.168.50.2"
     master.vm.box = "precise64"
+    master.vm.hostname = "puppet"
+    master.vm.provision "shell", path: "scripts/master.sh"
   end
 
   config.vm.define "node0" do |node0|
     node0.vm.network "private_network", ip: "192.168.50.100"
     node0.vm.box = "precise64"
+    node0.vm.hostname = "node0"
+    node0.vm.provision "shell", path: "scripts/slave.sh"
   end
 
   config.vm.define "node1" do |node1|
     node1.vm.network "private_network", ip: "192.168.50.101"
     node1.vm.box = "precise64"
+    node1.vm.hostname = "node1"
+    node1.vm.provision "shell", path: "scripts/slave.sh"
   end
 
   # The url from where the 'config.vm.box' box will be fetched if it

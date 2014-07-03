@@ -20,6 +20,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.provision "shell", path: "scripts/master.sh"
   end
 
+  config.vm.define "front" do |front|
+    front.vm.network "private_network", ip: "192.168.50.3"
+    front.vm.box = "precise64"
+    front.vm.hostname = "front"
+    front.vm.provision "shell", path: "scripts/slave.sh"
+    front.vm.network "forwarded_port", guest: 80, host: 8080
+  end
+
   (0..1).each do |i|
       config.vm.define "node#{i}" do |node|
           node.vm.network "private_network", ip: "192.168.50.#{i+100}"

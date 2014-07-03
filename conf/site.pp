@@ -1,9 +1,19 @@
-include lamp
+node /^node\d$/ {
+    include lamp
+}
 
-file { '/tmp/test':
-  ensure  => 'file',
-  content => "I am a test file",
-  group   => '1000',
-  mode    => '664',
-  owner   => '1000',
+node 'front' {
+    include nginx
+
+    nginx::resource::vhost { 'appli':
+        proxy   => 'http://farm',
+    }
+
+    nginx::resource::upstream { 'farm':
+        ensure  => present,
+        members => [
+            '192.168.50.100:80',
+            '192.168.50.101:80',
+        ],
+    }
 }

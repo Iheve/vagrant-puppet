@@ -8,6 +8,7 @@ templatedir=$confdir/templates
 prerun_command=/etc/puppet/etckeeper-commit-pre
 postrun_command=/etc/puppet/etckeeper-commit-post
 runinterval=30s
+pluginsync=true
 
 [master]
 # These are needed when the puppetmaster is run by passenger

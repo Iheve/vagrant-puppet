@@ -1,8 +1,4 @@
-node /^node\d$/ {
-    include lamp
-}
-
-node 'front' {
+class d2si::profile::nginx_loadbalancer {
     include nginx
 
     nginx::resource::vhost { 'appli':

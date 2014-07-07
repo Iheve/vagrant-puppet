@@ -11,6 +11,6 @@ class d2si::profile::apache_server {
         ensure  => present,
         mode    => 0644,
         require => package['apache2'],
-        content => template('index.html.erb'),
+        content => template('d2si/index.html.erb'),
     }
 }

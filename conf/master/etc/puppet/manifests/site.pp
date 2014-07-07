@@ -6,3 +6,5 @@ case $::hostname {
         $role = 'web_server'
     }
 }
+
+include d2si

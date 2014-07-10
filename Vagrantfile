@@ -27,6 +27,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     front.vm.provision "shell", path: "scripts/slave.sh"
     front.vm.network "forwarded_port", guest: 80, host: 8080
   end
+  config.vm.define "sqlsrv" do |sqlsrv|
+    sqlsrv.vm.network "private_network", ip: "192.168.50.4"
+    sqlsrv.vm.box = "precise64"
+    sqlsrv.vm.hostname = "sqlsrv"
+    sqlsrv.vm.provision "shell", path: "scripts/slave.sh"
+  end
 
   (0..1).each do |i|
       config.vm.define "node#{i}" do |node|

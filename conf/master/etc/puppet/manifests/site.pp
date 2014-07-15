@@ -2,6 +2,12 @@ case $::hostname {
     'puppet': {
         $role = 'puppetmaster'
     }
+    puppetdb: {
+        $role = 'puppetdb'
+    }
+    puppetboard: {
+        $role = 'puppetboard'
+    }
     'front': {
         $role = 'front_end'
     }

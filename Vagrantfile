@@ -27,11 +27,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     front.vm.provision "shell", path: "scripts/slave.sh"
     front.vm.network "forwarded_port", guest: 80, host: 8080
   end
+
   config.vm.define "sqlsrv" do |sqlsrv|
     sqlsrv.vm.network "private_network", ip: "192.168.50.4"
     sqlsrv.vm.box = "precise64"
     sqlsrv.vm.hostname = "sqlsrv"
     sqlsrv.vm.provision "shell", path: "scripts/slave.sh"
+  end
+
+  config.vm.define "puppetdb" do |puppetdb|
+    puppetdb.vm.network "private_network", ip: "192.168.50.5"
+    puppetdb.vm.box = "precise64"
+    puppetdb.vm.hostname = "puppetdb"
+    puppetdb.vm.provision "shell", path: "scripts/slave.sh"
+    puppetdb.vm.network "forwarded_port", guest: 80, host: 8081
   end
 
   (0..1).each do |i|

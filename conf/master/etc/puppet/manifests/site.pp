@@ -1,4 +1,7 @@
 case $::hostname {
+    'puppet': {
+        $role = 'puppetmaster'
+    }
     'front': {
         $role = 'front_end'
     }

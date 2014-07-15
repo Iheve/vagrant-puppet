@@ -1,0 +1,2 @@
+---
+nginx::resource::upstream::file: /etc/nginx/conf.d/farm-upstream.conf

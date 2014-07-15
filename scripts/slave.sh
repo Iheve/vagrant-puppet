@@ -6,6 +6,6 @@ while ! wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb; do
 done
 dpkg -i puppetlabs-release-precise.deb
 apt-get update
-apt-get install -y puppet vim
+apt-get install --no-install-recommends -y puppet vim
 cp -r /vagrant/conf/agent/*/ /
 puppet resource service puppet ensure=running enable=true

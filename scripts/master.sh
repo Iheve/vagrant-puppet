@@ -14,5 +14,8 @@ puppet module install puppetlabs-apt
 puppet module install puppetlabs-stdlib
 puppet module install puppetlabs-apache
 puppet module install puppetlabs-mysql
+puppet module install puppetlabs-puppetdb
+puppet module install nibalizer-puppetboard
 puppet module install jfryman-nginx
 chmod -R guo+r nginx
+puppet resource service puppet ensure=running enable=true

@@ -13,4 +13,11 @@ class d2si::profile::apache_server {
         require => package['apache2'],
         content => template('d2si/index.html.erb'),
     }
+
+    @@concat::fragment{"upstream-$fqdn":
+        target  => "/etc/nginx/conf.d/farm-upstream.conf",
+        content => "server $::hostname:80 fail_timeout=10s\n",
+        order   => "02",
+    }
+
 }

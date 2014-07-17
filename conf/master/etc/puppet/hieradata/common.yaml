@@ -1,2 +1,9 @@
 ---
 nginx::resource::upstream::file: /etc/nginx/conf.d/farm-upstream.conf
+
+serf::bin_dir: /usr/bin
+serf::version: 0.6.3
+serf::init_secript_url: https://raw.githubusercontent.com/    hashicorp/serf/master/ops-misc/debian/serf.upstart
+serf::config_hash:
+        interface: eth1
+        discover: puppetnodes

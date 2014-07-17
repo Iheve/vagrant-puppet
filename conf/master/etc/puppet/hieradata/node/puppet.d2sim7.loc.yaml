@@ -1,0 +1,4 @@
+---
+serf::config_hash:
+    tags:
+        role: puppetmaster

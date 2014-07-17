@@ -4,3 +4,6 @@ nginx::resource::upstream::members:
     - 192.168.50.101:80
 nginx::ressource::vhost::server_name:
     - appli
+serf::config_hash:
+    tags:
+        role: loadbalancer

@@ -16,6 +16,9 @@ puppet module install puppetlabs-apache
 puppet module install puppetlabs-mysql
 puppet module install puppetlabs-puppetdb
 puppet module install nibalizer-puppetboard
+puppet module install dalen-puppetdbquery
 puppet module install jfryman-nginx
+puppet module install nanliu-staging
+puppet module install justinclayton-serf
 chmod -R guo+r nginx
 puppet resource service puppet ensure=running enable=true

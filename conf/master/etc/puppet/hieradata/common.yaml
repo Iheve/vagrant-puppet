@@ -11,3 +11,4 @@ serf::config_hash:
         event_handlers:
             - member-join=/etc/serf/handlers/join.sh
             - member-failed=/etc/serf/handlers/leave.sh
+            - user:puppettest=puppet agent --onetime --no-daemonize

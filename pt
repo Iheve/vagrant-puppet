@@ -1,2 +1,5 @@
 #!/bin/bash
-vagrant ssh $1 -c "sudo puppet agent -t"
+for node in "$@"
+do
+    vagrant ssh $node -c "sudo puppet agent -t"
+done

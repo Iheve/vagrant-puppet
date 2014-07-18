@@ -1,0 +1,11 @@
+if [ "x${SERF_TAG_ROLE}" != "xloadbalancer" ]; then
+    echo "Not an lb. Ignoring member leave"
+    exit 0
+fi
+
+while read line; do
+    NAME=`echo $line | awk '{print \$1 }'`
+    sed -i'' "/${NAME}:/d" <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+done
+
+service nginx restart

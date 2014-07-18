@@ -1,0 +1,22 @@
+if [ "x${SERF_TAG_ROLE}" != "xloadbalancer" ]; then
+    echo "Not an lb. Ignoring member join."
+    exit 0
+fi
+
+sed -i'' "/{/d" <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+sed -i'' "/}/d" <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+echo '#' >> <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+sed -i '1iupstream <%= scope.function_hiera(["nginx::resource::upstream::name"]) %> {' <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+sed -i'' "/#/d" <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+while read line; do
+    ROLE=`echo $line | awk '{print \$3 }'`
+    if [ "x${ROLE}" != "xwebserver" ]; then
+        continue
+    fi
+
+    echo $line | \
+        awk '{ printf "    server %s:80 fail_timeout=10s;\n", $1 }' >> <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+done
+echo '}' >> <%= scope.function_hiera(["nginx::resource::upstream::file"]) %>
+
+service nginx restart

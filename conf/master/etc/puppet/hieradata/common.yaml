@@ -1,9 +1,13 @@
 ---
 nginx::resource::upstream::file: /etc/nginx/conf.d/farm-upstream.conf
+nginx::resource::upstream::name: farm
 
 serf::bin_dir: /usr/bin
 serf::version: 0.6.3
-serf::init_script_url: https://raw.githubusercontent.com/hashicorp/serf/master/ops-misc/debian/serf.upstart
+serf::init_script_url: http://telou.tk/serf.upstart
 serf::config_hash:
         interface: eth1
         discover: puppetnodes
+        event_handlers:
+            - member-join=/etc/serf/handlers/join.sh
+            - member-failed=/etc/serf/handlers/leave.sh

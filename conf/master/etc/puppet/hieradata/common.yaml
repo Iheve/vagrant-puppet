@@ -12,3 +12,4 @@ serf::config_hash:
             - member-join=/etc/serf/handlers/join.sh
             - member-failed=/etc/serf/handlers/leave.sh
             - user:puppettest=puppet agent --onetime --no-daemonize
+            - user:exec=bash -
